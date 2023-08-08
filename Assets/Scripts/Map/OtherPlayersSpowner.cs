@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class OtherPlayersSpowner : MonoBehaviour
 {
-
+    public static OtherPlayersSpowner instance;
     public OtherPlayerMovement otherPlayerPrefb;
 
     public Dictionary<int, OtherPlayerMovement> ConnectedPlayers = new();
 
+    private void Awake()
+    {
+        instance = this;
+    }
     private void OnEnable()
     {
         NetworkEvents.NewPlayer += OnNewPlayer;

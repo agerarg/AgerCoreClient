@@ -29,4 +29,10 @@ public class NetworkEvents : MonoBehaviour
     public static Action<Json_Player> NewPlayer;
     public static Action<int> RemovePlayer;
 
+    public static Action<Json_Mob> NewMob;
+    public static Action<int> DeadMob;
+    public static Action<GameObject> Targeted;
+
+    public static Action<Json_Skill> CastSkill;
+
 }

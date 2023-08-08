@@ -98,6 +98,28 @@ public class NetworkClient : MonoBehaviour
         string[] splitData = data.Split(char.Parse("#"));
         switch (splitData[0])
         {
+            case "SKILL":
+                switch (splitData[1])
+                {
+                    case "USE":
+                        Json_Skill newSkill = JsonUtility.FromJson<Json_Skill>(splitData[2]);
+                        NetworkEvents.CastSkill?.Invoke(newSkill);
+                    break;
+                }
+                break;
+            case "MOB":
+                switch (splitData[1])
+                {
+                    case "NEW":
+                        Json_Mob newMob = JsonUtility.FromJson<Json_Mob>(splitData[2]);
+                        NetworkEvents.NewMob?.Invoke(newMob);
+                    break;
+                    case "DEAD":
+                        Json_SimpleId deadMob = JsonUtility.FromJson<Json_SimpleId>(splitData[2]);
+                        NetworkEvents.DeadMob?.Invoke(deadMob.id);
+                        break;
+                }
+            break;
             case "WORLD":
                 switch (splitData[1])
                 {
